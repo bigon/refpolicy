@@ -756,6 +756,13 @@ interface(`sysnet_dns_name_resolve',`
 		nscd_use($1)
 	')
 
+	optional_policy(`
+		# In some setup, the /etc/resolv.conf file is a symlink to
+		# /var/run/NetworkManager/resolv.conf, we need to allow access
+		# to it so DNS resolution is working
+		networkmanager_read_pid_files($1)
+	')
+
 	ifdef(`init_systemd',`
 		optional_policy(`
 			systemd_dbus_chat_resolved($1)

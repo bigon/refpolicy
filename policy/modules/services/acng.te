@@ -1,0 +1,79 @@
+policy_module(acng, 0.0.1)
+
+########################################
+#
+# Declarations
+#
+
+type acng_t;
+type acng_exec_t;
+init_daemon_domain(acng_t, acng_exec_t)
+
+type acng_conf_t;
+files_config_file(acng_conf_t)
+
+type acng_var_cache_t;
+files_type(acng_var_cache_t)
+
+type acng_var_lib_t;
+files_type(acng_var_lib_t)
+
+type acng_var_log_t;
+logging_log_file(acng_var_log_t)
+
+type acng_var_run_t;
+files_pid_file(acng_var_run_t)
+
+########################################
+#
+# Local policy
+#
+
+allow acng_t self:process signal;
+allow acng_t self:tcp_socket create_stream_socket_perms;
+allow acng_t self:unix_dgram_socket create_socket_perms;
+allow acng_t self:unix_stream_socket create_stream_socket_perms;
+
+allow acng_t acng_var_cache_t:file map;
+manage_dirs_pattern(acng_t, acng_var_cache_t, acng_var_cache_t)
+manage_files_pattern(acng_t, acng_var_cache_t, acng_var_cache_t)
+manage_lnk_files_pattern(acng_t, acng_var_cache_t, acng_var_cache_t)
+
+allow acng_t acng_conf_t:file map;
+read_files_pattern(acng_t, acng_conf_t, acng_conf_t)
+# /etc/apt-cacher-ng/ contains symlinks that point to /var/lib/apt-cacher-ng/
+read_lnk_files_pattern(acng_t, acng_conf_t, acng_conf_t)
+
+allow acng_t acng_var_lib_t:file map;
+files_search_var_lib(acng_t)
+read_files_pattern(acng_t, acng_var_lib_t, acng_var_lib_t)
+
+allow acng_t acng_var_log_t:file map;
+logging_search_logs(acng_t)
+manage_files_pattern(acng_t, acng_var_log_t, acng_var_log_t)
+
+manage_sock_files_pattern(acng_t, acng_var_run_t, acng_var_run_t)
+
+kernel_read_vm_overcommit_sysctl(acng_t)
+
+# read /etc/nsswitch.conf
+files_read_etc_files(acng_t)
+
+corenet_tcp_bind_acng_port(acng_t)
+corenet_tcp_bind_generic_node(acng_t)
+corenet_tcp_connect_http_port(acng_t)
+
+sysnet_dns_name_resolve(acng_t)
+
+# Reads /etc/hosts.deny
+sysnet_read_config(acng_t)
+
+# Reads /usr/share/zoneinfo/
+miscfiles_read_localization(acng_t)
+
+miscfiles_read_generic_certs(acng_t)
+
+#optional_policy(`
+#	cron_system_entry(acng_t, acng_exec_t)
+#')
+#

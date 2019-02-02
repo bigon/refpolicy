@@ -1,0 +1,14 @@
+/etc/apt-cacher-ng/.*  gen_context(system_u:object_r:acng_conf_t,s0)
+/etc/cron.daily/apt-cacher-ng -- gen_context(system_u:object_r:acng_exec_t,s0)
+
+/usr/lib/apt-cacher-ng/acngtool -- gen_context(system_u:object_r:acng_exec_t,s0)
+
+/usr/sbin/apt-cacher-ng -- gen_context(system_u:object_r:acng_exec_t,s0)
+
+/run/apt-cacher-ng(/.*)?  gen_context(system_u:object_r:acng_var_run_t,s0)
+
+/var/cache/apt-cacher-ng(/.*)?	gen_context(system_u:object_r:acng_var_cache_t,s0)
+
+/var/lib/apt-cacher-ng(/.*)? gen_context(system_u:object_r:acng_var_lib_t,s0)
+
+/var/log/apt-cacher-ng(/.*)? gen_context(system_u:object_r:acng_var_log_t,s0)

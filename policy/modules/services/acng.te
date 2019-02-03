@@ -30,9 +30,14 @@ files_pid_file(acng_var_run_t)
 #
 
 allow acng_t self:process signal;
+allow acng_t self:fifo_file rw_fifo_file_perms;
 allow acng_t self:tcp_socket create_stream_socket_perms;
 allow acng_t self:unix_dgram_socket create_socket_perms;
 allow acng_t self:unix_stream_socket create_stream_socket_perms;
+
+can_exec(acng_t, acng_exec_t)
+corecmd_exec_bin(acng_t)
+corecmd_exec_shell(acng_t)
 
 allow acng_t acng_var_cache_t:file map;
 manage_dirs_pattern(acng_t, acng_var_cache_t, acng_var_cache_t)
@@ -61,6 +66,7 @@ files_read_etc_files(acng_t)
 
 corenet_tcp_bind_acng_port(acng_t)
 corenet_tcp_bind_generic_node(acng_t)
+corenet_tcp_connect_acng_port(acng_t)
 corenet_tcp_connect_http_port(acng_t)
 
 sysnet_dns_name_resolve(acng_t)
@@ -73,7 +79,6 @@ miscfiles_read_localization(acng_t)
 
 miscfiles_read_generic_certs(acng_t)
 
-#optional_policy(`
-#	cron_system_entry(acng_t, acng_exec_t)
-#')
-#
+optional_policy(`
+	cron_system_entry(acng_t, acng_exec_t)
+')

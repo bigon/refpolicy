@@ -429,6 +429,8 @@ filetrans_pattern(svirt_t, virt_home_t, svirt_home_t, dir, "qemu")
 
 stream_connect_pattern(svirt_t, svirt_home_t, svirt_home_t, virtd_t)
 
+kernel_read_vm_overcommit_sysctl(svirt_t)
+
 corenet_udp_sendrecv_generic_if(svirt_t)
 corenet_udp_sendrecv_generic_node(svirt_t)
 corenet_udp_bind_generic_node(svirt_t)

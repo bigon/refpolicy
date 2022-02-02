@@ -188,6 +188,7 @@ ifdef(`distro_gentoo',`
 /usr/lib/ConsoleKit/run-session\.d(/.*)?	gen_context(system_u:object_r:bin_t,s0)
 /usr/lib/ConsoleKit/scripts(/.*)?	gen_context(system_u:object_r:bin_t,s0)
 /usr/lib/courier(/.*)?			gen_context(system_u:object_r:bin_t,s0)
+/usr/lib/cni/.*			--	gen_context(system_u:object_r:bin_t,s0)
 /usr/lib/crda/setregdomain	--	gen_context(system_u:object_r:bin_t,s0)
 /usr/lib/cups(/.*)? 			gen_context(system_u:object_r:bin_t,s0)
 /usr/lib/cyrus/.*		--	gen_context(system_u:object_r:bin_t,s0)

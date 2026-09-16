@@ -353,6 +353,7 @@ optional_policy(`
 
 optional_policy(`
 	udev_manage_runtime_files(devicekit_power_t)
+	udev_read_runtime_files(devicekit_power_t)
 ')
 
 optional_policy(`

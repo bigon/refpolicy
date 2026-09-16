@@ -142,6 +142,8 @@ auth_use_nsswitch(nut_upsdrvctl_t)
 
 init_sigchld(nut_upsdrvctl_t)
 
+udev_read_runtime_files(nut_upsdrvctl_t)
+
 #######################################
 #
 # Cgi local policy

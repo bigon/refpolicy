@@ -121,6 +121,8 @@ fs_list_inotifyfs(bluetooth_t)
 
 term_use_unallocated_ttys(bluetooth_t)
 
+udev_read_runtime_files(bluetooth_t)
+
 auth_use_nsswitch(bluetooth_t)
 
 logging_send_syslog_msg(bluetooth_t)

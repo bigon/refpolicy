@@ -65,6 +65,8 @@ miscfiles_read_localization(pcscd_t)
 
 sysnet_dns_name_resolve(pcscd_t)
 
+udev_read_runtime_files(pcscd_t)
+
 optional_policy(`
 	dbus_system_bus_client(pcscd_t)
 

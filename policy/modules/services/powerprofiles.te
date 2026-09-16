@@ -37,7 +37,7 @@ miscfiles_read_localization(power_profilesd_t)
 policykit_dbus_chat(power_profilesd_t)
 systemd_dbus_chat_logind(power_profilesd_t)
 
-udev_search_runtime(power_profilesd_t)
+udev_read_runtime_files(power_profilesd_t)
 
 ifdef(`init_systemd',`
 	init_stream_connect(power_profilesd_t)

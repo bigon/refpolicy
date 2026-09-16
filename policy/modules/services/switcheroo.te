@@ -24,7 +24,7 @@ dev_read_sysfs(switcheroo_t)
 
 miscfiles_read_localization(switcheroo_t)
 
-udev_search_runtime(switcheroo_t)
+udev_read_runtime_files(switcheroo_t)
 
 optional_policy(`
 	dbus_list_system_bus_runtime(switcheroo_t)

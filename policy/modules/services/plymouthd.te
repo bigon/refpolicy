@@ -131,6 +131,7 @@ term_use_console(plymouth_t)
 term_use_ptmx(plymouth_t)
 
 init_signal(plymouth_t)
+init_stream_connect(plymouth_t)
 init_use_fds(plymouth_t)
 
 miscfiles_read_localization(plymouth_t)

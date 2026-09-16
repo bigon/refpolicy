@@ -325,7 +325,7 @@ ifdef(`init_systemd',`
 
 	# setexec and setkeycreate for systemd --user
 	allow init_t self:process { getcap getsched setcap setexec setfscreate setkeycreate setpgid setrlimit setsched setsockcreate };
-	allow init_t self:capability2 { audit_read block_suspend bpf perfmon };
+	allow init_t self:capability2 { audit_read block_suspend bpf checkpoint_restore perfmon };
 	allow init_t self:netlink_kobject_uevent_socket create_socket_perms;
 	allow init_t self:unix_dgram_socket lock;
 

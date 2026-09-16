@@ -566,6 +566,9 @@ ifdef(`init_systemd',`
 	systemd_relabelto_journal_files(syslogd_t)
 	# journald enumerates and reads logind session state in /run/systemd/sessions
 	systemd_read_logind_sessions_files(syslogd_t)
+	# journald looks up unit invocation IDs via symlinks in /run/systemd/units
+	init_search_units(syslogd_t)
+	init_read_generic_units_symlinks(syslogd_t)
 
 	udev_read_runtime_files(syslogd_t)
 

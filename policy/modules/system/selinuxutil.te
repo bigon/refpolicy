@@ -545,11 +545,13 @@ kernel_read_system_state(semanage_t)
 kernel_read_kernel_sysctls(semanage_t)
 kernel_read_vm_overcommit_sysctl(semanage_t)
 kernel_dontaudit_getattr_proc(semanage_t)
+kernel_getattr_debugfs(semanage_t)
 
 corecmd_exec_bin(semanage_t)
 corecmd_exec_shell(semanage_t)
 
 dev_read_urand(semanage_t)
+dev_getattr_fs(semanage_t)
 
 domain_use_interactive_fds(semanage_t)
 
@@ -558,6 +560,13 @@ files_read_etc_runtime_files(semanage_t)
 files_map_usr_files(semanage_t)
 files_read_usr_files(semanage_t)
 files_list_runtime(semanage_t)
+
+fs_getattr_cgroup(semanage_t)
+fs_getattr_hugetlbfs(semanage_t)
+fs_getattr_pstorefs(semanage_t)
+fs_getattr_tmpfs(semanage_t)
+fs_getattr_tracefs(semanage_t)
+fs_getattr_xattr_fs(semanage_t)
 
 mls_file_write_all_levels(semanage_t)
 mls_file_read_all_levels(semanage_t)
@@ -570,6 +579,7 @@ selinux_read_policy(semanage_t)
 selinux_set_all_booleans(semanage_t)
 
 term_use_all_terms(semanage_t)
+term_getattr_pty_fs(semanage_t)
 
 # Running genhomedircon requires this for finding all users
 auth_use_nsswitch(semanage_t)
@@ -722,6 +732,7 @@ seutil_read_module_store(setfiles_t)
 userdom_use_all_users_fds(setfiles_t)
 # for config files in a home directory
 userdom_read_user_home_content_files(setfiles_t)
+userdom_write_user_tmp_files(setfiles_t)
 
 ifdef(`distro_debian',`
 	# udev tmpfs is populated with static device nodes
